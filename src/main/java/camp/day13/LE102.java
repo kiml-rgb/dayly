@@ -2,10 +2,8 @@ package camp.day13;
 
 import camp.day12.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author ZYF
@@ -14,7 +12,18 @@ import java.util.Queue;
  */
 public class LE102 {
     public static void main(String[] args) {
-
+//        TreeNode node = new TreeNode(1);
+//        TreeNode left = new TreeNode(2);
+//        TreeNode right = new TreeNode(3);
+//        TreeNode leftright = new TreeNode(5);
+//        TreeNode rightright = new TreeNode(4);
+//        node.left = left;
+//        node.right = right;
+//        left.right = leftright;
+//        right.right = rightright;
+//        ArrayList<List<Integer>> resultList = new ArrayList<>();
+//        levelOrderDFS(node, 0, resultList);
+//        rightSideView(node);
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -65,7 +74,7 @@ public class LE102 {
      * @param i 层数
      * @param resultList 遍历结果
      */
-    private void levelOrderDFS(TreeNode root, int i, ArrayList<List<Integer>> resultList) {
+    private static void levelOrderDFS(TreeNode root, int i, ArrayList<List<Integer>> resultList) {
         if (root == null) {
             return;
         }
@@ -81,5 +90,47 @@ public class LE102 {
 
         levelOrderDFS(root.left, i, resultList);
         levelOrderDFS(root.right, i, resultList);
+    }
+
+    /**
+     * LE107
+     * https://leetcode.cn/problems/binary-tree-level-order-traversal-ii/
+     * @param root 根节点
+     * @return 结果
+     */
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        ArrayList<List<Integer>> resultList = new ArrayList<>();
+        levelOrderDFS(root, 0, resultList);
+        Collections.reverse(resultList);
+        return resultList;
+    }
+
+    static List<Integer> res = new ArrayList<>();
+    /**
+     * LE199
+     * https://leetcode.cn/problems/binary-tree-right-side-view/
+     * @param root 根节点
+     * @return 结果
+     */
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> integerList = new ArrayList<>();
+//        ArrayList<List<Integer>> resultList = new ArrayList<>();
+//        levelOrderDFS(root, 0, resultList);
+//        for (List<Integer> list : resultList) {
+//            integerList.add(list.get(list.size() - 1));
+//        }
+        rightSideViewDFS(root, 0, integerList);
+        return integerList;
+    }
+
+    private void rightSideViewDFS(TreeNode root, int i, List<Integer> integerList) {
+        if (root == null) {
+            return;
+        }
+        if (i == integerList.size()) {
+            integerList.add(root.val);
+        }
+        rightSideViewDFS(root.right, i + 1, integerList);
+        rightSideViewDFS(root.left, i + 1, integerList);
     }
 }
