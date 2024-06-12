@@ -24,7 +24,7 @@ public class LE40 {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> resultOne = new ArrayList<>();
 
-        combinationSum2BFS(0, 0, target, candidates, resultOne, result);
+        combinationSum2DFS(0, 0, target, candidates, resultOne, result);
         return result;
     }
 
@@ -33,7 +33,7 @@ public class LE40 {
      * 1. 和上题差不多。但是数组变成有重复元素的了。
      * 2. 想法是每层遍历的时候，去重
      */
-    private static void combinationSum2BFS(int startIndex, int sum, int target, int[] candidates, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void combinationSum2DFS(int startIndex, int sum, int target, int[] candidates, List<Integer> resultOne, List<List<Integer>> result) {
         if (sum == target) {
             result.add(new ArrayList<>(resultOne));
             return;
@@ -44,7 +44,7 @@ public class LE40 {
                 continue;
             }
             resultOne.add(candidates[i]);
-            combinationSum2BFS(i + 1, sum + candidates[i], target, candidates, resultOne, result);
+            combinationSum2DFS(i + 1, sum + candidates[i], target, candidates, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
         }
     }

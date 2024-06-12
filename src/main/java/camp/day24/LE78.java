@@ -25,7 +25,7 @@ public class LE78 {
         // 排序
         Arrays.sort(nums);
 
-        subsetsBFS(0, nums, resultOne, result);
+        subsetsDFS(0, nums, resultOne, result);
         return result;
     }
 
@@ -34,7 +34,7 @@ public class LE78 {
      * 而且还要不重复
      * @param startIndex 起始index
      */
-    private static void subsetsBFS(int startIndex, int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void subsetsDFS(int startIndex, int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
         result.add(new ArrayList<>(resultOne));
 
         for (int i = startIndex; i < nums.length; i++) {
@@ -42,7 +42,7 @@ public class LE78 {
                 continue;
             }
             resultOne.add(nums[i]);
-            subsetsBFS(i + 1, nums, resultOne, result);
+            subsetsDFS(i + 1, nums, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
         }
     }

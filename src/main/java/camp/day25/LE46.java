@@ -2,7 +2,6 @@ package camp.day25;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -26,11 +25,11 @@ public class LE46 {
             return result;
         }
 
-        permuteBFS(nums, resultOne, result);
+        permuteDFS(nums, resultOne, result);
         return result;
     }
 
-    private static void permuteBFS(int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void permuteDFS(int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
         if (resultOne.size() == nums.length) {
             result.add(new ArrayList<>(resultOne));
             return;
@@ -41,7 +40,7 @@ public class LE46 {
                 continue;
             }
             resultOne.add(nums[i]);
-            permuteBFS(nums, resultOne, result);
+            permuteDFS(nums, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
         }
     }

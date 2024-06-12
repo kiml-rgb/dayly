@@ -2,8 +2,6 @@ package camp.day20;
 
 import camp.day12.TreeNode;
 
-import java.util.Arrays;
-
 /**
  * @author ZYF
  * @date: 2024/6/9 17:58
@@ -19,18 +17,18 @@ public class LE108 {
         if (nums.length == 0) {
             return null;
         }
-        return sortedBFS(nums, 0, nums.length);
+        return sortedDFS(nums, 0, nums.length);
     }
 
-    private static TreeNode sortedBFS(int[] nums, int i, int j) {
+    private static TreeNode sortedDFS(int[] nums, int i, int j) {
         if (i >= j) {
             return null;
         }
 
         int mid = (j - i) / 2 + i;
         TreeNode treeNode = new TreeNode(nums[mid]);
-        treeNode.left = sortedBFS(nums, i, mid);
-        treeNode.right = sortedBFS(nums , mid + 1, j);
+        treeNode.left = sortedDFS(nums, i, mid);
+        treeNode.right = sortedDFS(nums , mid + 1, j);
         return treeNode;
     }
 }

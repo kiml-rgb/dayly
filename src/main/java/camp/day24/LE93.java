@@ -2,7 +2,6 @@ package camp.day24;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author ZYF
@@ -26,7 +25,7 @@ public class LE93 {
             return result;
         }
 
-        restoreIpAddressesBFS(0, temp, s, result);
+        restoreIpAddressesDFS(0, temp, s, result);
         return result;
     }
 
@@ -36,7 +35,7 @@ public class LE93 {
      * @param s 输入的s
      * @param result 切割的字符串集
      */
-    private static void restoreIpAddressesBFS(int startIndex, List<String> temp, String s, List<String> result) {
+    private static void restoreIpAddressesDFS(int startIndex, List<String> temp, String s, List<String> result) {
         if (startIndex >= s.length() && temp.size() == 4) {
             String resultOne = String.join(".", temp);
             result.add(resultOne);
@@ -52,7 +51,7 @@ public class LE93 {
                 continue;
             }
             temp.add(substring);
-            restoreIpAddressesBFS(i + 1, temp, s, result);
+            restoreIpAddressesDFS(i + 1, temp, s, result);
             temp.remove(temp.size() - 1);
         }
     }

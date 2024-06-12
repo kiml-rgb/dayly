@@ -1,8 +1,6 @@
 package camp.day21;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +16,7 @@ public class LE77 {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        combineBFS(1, n, k, list, result);
+        combineDFS(1, n, k, list, result);
         return result;
     }
 
@@ -30,7 +28,7 @@ public class LE77 {
      * @param list 每个list
      * @param result 最后的结果
      */
-    private void combineBFS(int start, int n, int k, List<Integer> list, List<List<Integer>> result) {
+    private void combineDFS(int start, int n, int k, List<Integer> list, List<List<Integer>> result) {
         if (list.size() == k) {
             List<Integer> resultOne = new ArrayList<>(k);
             resultOne.addAll(list);
@@ -40,7 +38,7 @@ public class LE77 {
 
         for (int j = start; j <= (n - (k - list.size())) + 1; j++) {
             list.add(j);
-            combineBFS(j + 1, n, k, list, result);
+            combineDFS(j + 1, n, k, list, result);
             list.remove(list.size() - 1);
         }
     }

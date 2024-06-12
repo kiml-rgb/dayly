@@ -25,12 +25,12 @@ public class LE39 {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> resultOne = new ArrayList<>();
 
-        combinationSumBFS(0, 0, target, candidates, resultOne, result);
+        combinationSumDFS(0, 0, target, candidates, resultOne, result);
         return result;
     }
 
 
-    private static void combinationSumBFS(int startIndex, int sum, int target, int[] candidates, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void combinationSumDFS(int startIndex, int sum, int target, int[] candidates, List<Integer> resultOne, List<List<Integer>> result) {
         if (target == sum) {
             result.add(new ArrayList<>(resultOne));
             return;
@@ -39,7 +39,7 @@ public class LE39 {
         // for循环的判断做了剪枝优化处理
         for (int i = startIndex; i < candidates.length && sum + candidates[i] <= target; i++) {
             resultOne.add(candidates[i]);
-            combinationSumBFS(i, sum + candidates[i], target, candidates, resultOne, result);
+            combinationSumDFS(i, sum + candidates[i], target, candidates, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
         }
     }

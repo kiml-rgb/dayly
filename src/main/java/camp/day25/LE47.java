@@ -2,7 +2,6 @@ package camp.day25;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ public class LE47 {
         }
 
         Arrays.sort(nums);
-        permuteUniqueBFS(nums, new boolean[]{}, resultOne, result);
+        permuteUniqueDFS(nums, new boolean[]{}, resultOne, result);
         return result;
     }
 
@@ -37,7 +36,7 @@ public class LE47 {
      * 用数组标记因为这个树更像一个矩阵
      * 数组可以标记nums又可以标记层数
      */
-    private static void permuteUniqueBFS(int[] nums, boolean[] used, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void permuteUniqueDFS(int[] nums, boolean[] used, List<Integer> resultOne, List<List<Integer>> result) {
         if (resultOne.size() == nums.length) {
             result.add(new ArrayList<>(resultOne));
             return;
@@ -59,7 +58,7 @@ public class LE47 {
             // 这层是否使用过
             used[i] = true;
             resultOne.add(nums[i]);
-            permuteUniqueBFS(nums, used, resultOne, result);
+            permuteUniqueDFS(nums, used, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
             used[i] = false;
         }

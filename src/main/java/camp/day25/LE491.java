@@ -1,7 +1,6 @@
 package camp.day25;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author ZYF
@@ -21,11 +20,11 @@ public class LE491 {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> resultOne = new ArrayList<>();
 
-        findSubsequencesBFS(0 , nums, resultOne, result);
+        findSubsequencesDFS(0 , nums, resultOne, result);
         return result;
     }
 
-    private static void findSubsequencesBFS(int startIndex, int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
+    private static void findSubsequencesDFS(int startIndex, int[] nums, List<Integer> resultOne, List<List<Integer>> result) {
         // 先这样判断是否重复
         if (resultOne.size() >= 2) {
             result.add(new ArrayList<>(resultOne));
@@ -42,7 +41,7 @@ public class LE491 {
             }
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
             resultOne.add(nums[i]);
-            findSubsequencesBFS(i + 1, nums, resultOne, result);
+            findSubsequencesDFS(i + 1, nums, resultOne, result);
             resultOne.remove(resultOne.size() - 1);
         }
     }

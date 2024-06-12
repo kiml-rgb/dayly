@@ -1,8 +1,6 @@
 package camp.day23;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,11 +20,11 @@ public class LE131 {
     public static List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();
         List<String> string = new ArrayList<>();
-        partitionBFS(0, s, string, result);
+        partitionDFS(0, s, string, result);
         return result;
     }
 
-    private static void partitionBFS(int startIndex, String s, List<String> string, List<List<String>> result) {
+    private static void partitionDFS(int startIndex, String s, List<String> string, List<List<String>> result) {
         if (startIndex >= s.length()) {
             result.add(new ArrayList<>(string));
         }
@@ -37,7 +35,7 @@ public class LE131 {
                 continue;
             }
             string.add(substring);
-            partitionBFS(i + 1, s, string, result);
+            partitionDFS(i + 1, s, string, result);
             string.remove(string.size() - 1);
         }
     }
