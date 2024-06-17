@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class LE56 {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(merge(new int[][]{{1,10}, {4, 5}, {6, 7}, {8, 9}})));
+        System.out.println(Arrays.deepToString(merge(new int[][]{{1, 10}, {4, 5}, {6, 7}, {8, 9}})));
     }
 
     public static int[][] merge(int[][] intervals) {
@@ -36,7 +36,7 @@ public class LE56 {
                 list.add(new int[]{start, end});
                 start = intervals[i][0];
                 end = intervals[i][1];
-            // 更新合并的右边界
+                // 更新合并的右边界
             } else {
                 end = Math.max(end, intervals[i][1]);
                 // 更新右边界
